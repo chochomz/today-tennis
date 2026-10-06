@@ -7,7 +7,7 @@
   <meta name="theme-color" content="#064e3b">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <title>오늘의 테니스모임</title>
+  <title>보화 테니스 클럽</title>
 
   <!-- 모바일 기종 무관하게 100% 동일하게 렌더링되는 전용 영문 필기체 구글 웹폰트 로드 -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -419,6 +419,7 @@
       font-weight: normal;
     }
 
+    /* 대진표 및 점수 입력 UI 최적화 */
     .match-list {
       flex: 1;
       overflow-y: auto;
@@ -427,6 +428,7 @@
       gap: 8px;
       max-height: 330px;
       padding-right: 2px;
+      scroll-behavior: smooth;
     }
     .match-card {
       display: flex;
@@ -437,6 +439,7 @@
       border: 1px solid #e2e8f0;
       background: #f8fafc;
       box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+      transition: background-color 0.2s ease, border-color 0.2s ease;
     }
     .match-card.played {
       background: var(--primary-light);
@@ -498,6 +501,7 @@
       font-size: 14px;
       font-weight: 700;
       color: #0f172a;
+      transition: all 0.2s ease;
     }
     .team-box.win {
       border-color: #22c55e;
@@ -544,19 +548,27 @@
       border-radius: 10px;
       border: 1px solid #cbd5e1;
     }
+    /* 모바일 자동확대(zoom) 및 화면 덜컹거림 방지 16px 폰트 및 고정 규격 */
     .score-input {
-      width: 32px;
-      height: 32px;
+      width: 34px;
+      height: 34px;
       text-align: center;
       font-weight: 900;
       font-size: 16px;
       color: #0f172a;
       background: #ffffff;
-      border: 1px solid #cbd5e1;
+      border: 1.5px solid #cbd5e1;
       border-radius: 6px;
       outline: none;
+      -webkit-appearance: none;
+      appearance: none;
+      touch-action: manipulation;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
     }
-    .score-input:focus { border-color: var(--primary); }
+    .score-input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 2px rgba(21, 128, 61, 0.2);
+    }
     .btn-action-mini {
       font-size: 11px;
       font-weight: 800;
@@ -809,7 +821,7 @@
             <circle class="anim-ball" cx="25" cy="15" r="4.5" fill="var(--accent)" />
           </svg>
         </button>
-        <span class="club-title-text">오늘의 테니스모임</span>
+        <span class="club-title-text">보화 테니스 클럽</span>
         <div class="header-btns-group">
           <button onclick="openRulesModal()" class="rules-trigger-btn" title="공식 규칙">📜 규칙</button>
           <button onclick="openManualModal()" class="manual-trigger-btn" title="이용 설명서">📖</button>
@@ -901,7 +913,7 @@
         <div id="matchesCompactList" class="match-list"></div>
       </section>
 
-      <!-- [탭 3] 결과 (4개 버튼 1줄 정렬) -->
+      <!-- [탭 3] 결과 -->
       <section id="tab-results" class="tab-section hidden">
         <div>
           <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 3px; margin-bottom: 10px; padding-top: 2px;">
@@ -955,7 +967,6 @@
     </main>
   </div>
 
-  <!-- 하단 크레딧: 모바일 기종 관계없이 유려하게 표시되는 필기체 웹폰트 적용 -->
   <div class="footer-credit" onclick="openPoemModal()" style="cursor: pointer;" title="클릭하여 숨겨진 시 감상하기">
     Designed by msoo
   </div>
@@ -971,7 +982,7 @@
   <div id="manualModal" class="modal-backdrop">
     <div class="modal-box" style="max-width: 380px;">
       <div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #e2e8f0; padding-bottom: 8px; margin-bottom: 12px;">
-        <h3 style="font-size: 15px; font-weight: 900; color: #1e293b;">📖 오늘의 테니스모임 - 이용 가이드</h3>
+        <h3 style="font-size: 15px; font-weight: 900; color: #1e293b;">📖 보화 테니스 클럽 - 이용 가이드</h3>
         <button onclick="closeManualModal()" style="border: none; background: none; font-size: 18px; color: #94a3b8; cursor: pointer;">✕</button>
       </div>
 
@@ -1000,7 +1011,7 @@
           <div style="font-weight: 900; color: var(--primary); font-size: 14px; margin-bottom: 6px;">3. 🎯 2단계: 경기 진행 및 점수 입력</div>
           <ul style="padding-left: 16px; display: flex; flex-direction: column; gap: 4px; font-size: 12px;">
             <li><b>대진표 확인:</b> [경기대진] 탭에서 각 코트별 경기 대진, 파트너, 휴식 선수를 한눈에 파악합니다.</li>
-            <li><b>점수 입력하기:</b> 경기 완료 후 스코어를 터치하여 입력합니다. 입력 시 완료 카드로 자동 반영됩니다.</li>
+            <li><b>⚡ 스마트 스코어 입력:</b> 모바일 화면 움직임 없이 6을 입력하면 바로 우측 점수로 넘어가고, 2를 마저 입력 완료하면 다음 경기 첫 번째 칸으로 안전하게 자동 이동합니다.</li>
             <li><b>⚡ 실시간 동기화:</b> 상단 시계 우측의 램프가 실시간 연동 상태를 보여줍니다.</li>
           </ul>
         </div>
@@ -1023,7 +1034,7 @@
   <div id="rulesModal" class="modal-backdrop">
     <div class="modal-box" style="max-width: 380px;">
       <div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #e2e8f0; padding-bottom: 8px; margin-bottom: 12px;">
-        <h3 style="font-size: 15px; font-weight: 900; color: #1e293b;">📜 오늘의 테니스모임 5대 공식 규칙</h3>
+        <h3 style="font-size: 15px; font-weight: 900; color: #1e293b;">📜 보화 테니스 클럽 5대 공식 규칙</h3>
         <button onclick="closeRulesModal()" style="border: none; background: none; font-size: 18px; color: #94a3b8; cursor: pointer;">✕</button>
       </div>
 
@@ -1042,7 +1053,7 @@
         <div style="background: #f8fafc; padding: 10px 12px; border-radius: 8px; border-left: 4px solid var(--primary);">
           <div style="font-weight: 900; color: var(--primary); font-size: 14px; margin-bottom: 6px;">2. 기본 규칙 (Basic Rules)</div>
           <ol style="padding-left: 16px; display: flex; flex-direction: column; gap: 4px; font-size: 12px;">
-            <li>모임의 정해진 시간과 운영 일정을 엄수합니다.</li>
+            <li>클럽의 정해진 시간과 운영 일정을 엄수합니다.</li>
             <li>대진 배정 결과에 적극 순응하고 협조합니다.</li>
             <li>코트 내에서는 반드시 테니스 전용화를 착용합니다.</li>
             <li>부상 방지를 위해 사전 준비운동을 철저히 진행합니다.</li>
@@ -1117,7 +1128,7 @@
         </button>
 
         <button onclick="setSeasonTheme('winter')" style="display: flex; align-items: center; justify-content: space-between; padding: 8px 10px; border-radius: 10px; border: 1px solid #bfdbfe; background: #eff6ff; text-align: left; cursor: pointer;">
-          <span style="font-size: 12px; font-weight: 900; color: #1e3a8a;">❄ 겨울 (네이비)</span>
+          <span style="font-size: 12px; font-weight: 900; color: #1e3a8a;">❄️ 겨울 (네이비)</span>
           <div style="width: 12px; height: 12px; border-radius: 50%; background: #1d4ed8;"></div>
         </button>
         <button onclick="setSeasonTheme('winter_charcoal')" style="display: flex; align-items: center; justify-content: space-between; padding: 8px 10px; border-radius: 10px; border: 1px solid #cbd5e1; background: #f8fafc; text-align: left; cursor: pointer;">
@@ -1215,7 +1226,6 @@
     </div>
   </div>
 
-  <!-- 큰 사진 보기 라이트박스 -->
   <div id="photoLightbox" class="modal-backdrop" style="z-index: 120; background: rgba(0,0,0,0.9); padding: 10px;" onclick="closePhotoLightbox()">
     <div style="position: relative; max-width: 95vw; max-height: 90vh; display: flex; flex-direction: column; align-items: center;" onclick="event.stopPropagation();">
       <img id="lightboxImg" src="" style="max-width: 100%; max-height: 80vh; object-fit: contain; border-radius: 8px; box-shadow: 0 10px 25px rgba(0,0,0,0.5);" />
@@ -1300,10 +1310,9 @@
     import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
     import { getFirestore, doc, setDoc, deleteDoc, onSnapshot, collection, getDocs } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
-    // [중요] '오늘의 테니스모임' 전용 고유 식별자 (세종/보화/죽정사택 데이터와 100% 완전 격리 분리)
-    const CLUB_ID = "today-tennis-club";
-    const LOCAL_STORAGE_KEY = "today_tennis_state_v1";
-    const LOCAL_ARCHIVE_KEY = "today_tennis_archive_v1";
+    const CLUB_ID = "bohwa-tennis-club";
+    const LOCAL_STORAGE_KEY = "bohwa_tennis_state_v1";
+    const LOCAL_ARCHIVE_KEY = "bohwa_tennis_archive_v1";
 
     const firebaseConfig = {
       apiKey: "AIzaSyC2EQ52cnJjfwLnD55H3UeS7s9gFvxFuKk",
@@ -1837,26 +1846,45 @@
     }
 
     window.requestResetScores = function() {
-      openConfirmModal('점수 초기화', '현재까지 입력된 모든 경기 점수를 0으로 초기화하시겠습니까?', () => {
-        window.state.matches.forEach(m => { m.s1 = 0; m.s2 = 0; });
-        saveState(true);
-        renderMatches();
-        renderResults();
-        showToast('전체 경기 점수가 초기화되었습니다.');
-      });
+      openConfirmModal(
+        '경기 전체 초기화', 
+        '이 경기의 입력된 자료들이 삭제 되므로 먼저 결과 페이지에서 저장 한 후 진행해 주세요.', 
+        () => {
+          // 선수 명단 및 경기 대진 기록 초기화
+          window.state.players = Array(window.state.count).fill('');
+          if (window.state.matches) {
+            window.state.matches.forEach(m => { m.s1 = 0; m.s2 = 0; });
+          }
+          saveState(true);
+          renderPlayerInputs(true);
+          renderMatches();
+          renderResults();
+          showToast('선수 및 대진 기록이 초기화되었습니다.');
+        }
+      );
     }
 
     function renderMatches() {
       const container = document.getElementById('matchesCompactList');
       if (!container) return;
       
+      // 사용자가 점수 입력 중일 때는 전체 DOM을 날려 포커스가 튀거나 키패드가 닫히는 현상 방지
+      const activeEl = document.activeElement;
+      if (activeEl && activeEl.classList.contains('score-input')) {
+        updateAllMatchCardStates();
+        updateStats();
+        return;
+      }
+
       if (!window.state.matches || window.state.matches.length === 0) buildKdkSchedule(false);
 
       let htmlArr = [];
       window.state.matches.forEach((m, matchIndex) => {
         const isPlayed = (m.s1 > 0 || m.s2 > 0);
-        const val1 = isPlayed ? m.s1 : '', val2 = isPlayed ? m.s2 : '';
-        const isT1Win = isPlayed && m.s1 > m.s2, isT2Win = isPlayed && m.s2 > m.s1;
+        const val1 = isPlayed ? m.s1 : '';
+        const val2 = isPlayed ? m.s2 : '';
+        const isT1Win = isPlayed && m.s1 > m.s2;
+        const isT2Win = isPlayed && m.s2 > m.s1;
 
         let restTag = '';
         if (m.rest && m.rest.length > 0) {
@@ -1874,7 +1902,7 @@
         };
 
         htmlArr.push(`
-          <div class="match-card ${isPlayed ? 'played' : ''}">
+          <div id="match-card-${matchIndex}" class="match-card ${isPlayed ? 'played' : ''}">
             <div class="match-top-row">
               <div style="display: flex; align-items: center;">
                 <span class="match-badge">🎾 ${m.id}경기</span>
@@ -1883,15 +1911,39 @@
               ${restTag}
             </div>
             <div class="match-body-row">
-              <div class="team-box ${isT1Win ? 'win' : (isT2Win ? 'lose' : '')}">
+              <div id="team1-box-${matchIndex}" class="team-box ${isT1Win ? 'win' : (isT2Win ? 'lose' : '')}">
                 ${renderMatchTeam(m.t1)}
               </div>
               <div class="score-inputs-wrap">
-                <input id="score-${matchIndex}-1" type="number" inputmode="numeric" pattern="[0-9]*" placeholder="0" value="${val1}" oninput="handleNumericScoreChange(${m.id}, 1, this.value, ${matchIndex})" class="score-input"/>
+                <input 
+                  id="score-${matchIndex}-1" 
+                  type="text" 
+                  inputmode="numeric" 
+                  pattern="[0-9]*"
+                  maxlength="1" 
+                  placeholder="0" 
+                  value="${val1}" 
+                  onfocus="handleScoreFocus(this)"
+                  oninput="handleNumericScoreChange(${m.id}, 1, this.value, ${matchIndex})" 
+                  class="score-input"
+                  autocomplete="off"
+                />
                 <span style="font-weight: 900; color: #64748b; font-size: 14px;">:</span>
-                <input id="score-${matchIndex}-2" type="number" inputmode="numeric" pattern="[0-9]*" placeholder="0" value="${val2}" oninput="handleNumericScoreChange(${m.id}, 2, this.value, ${matchIndex})" class="score-input"/>
+                <input 
+                  id="score-${matchIndex}-2" 
+                  type="text" 
+                  inputmode="numeric" 
+                  pattern="[0-9]*"
+                  maxlength="1" 
+                  placeholder="0" 
+                  value="${val2}" 
+                  onfocus="handleScoreFocus(this)"
+                  oninput="handleNumericScoreChange(${m.id}, 2, this.value, ${matchIndex})" 
+                  class="score-input"
+                  autocomplete="off"
+                />
               </div>
-              <div class="team-box ${isT2Win ? 'win' : (isT1Win ? 'lose' : '')}">
+              <div id="team2-box-${matchIndex}" class="team-box ${isT2Win ? 'win' : (isT1Win ? 'lose' : '')}">
                 ${renderMatchTeam(m.t2)}
               </div>
             </div>
@@ -1902,38 +1954,110 @@
       updateStats();
     }
 
+    // 터치 시 기존 값 전체 선택으로 편리한 재입력 지원
+    window.handleScoreFocus = function(inputEl) {
+      if (inputEl) {
+        setTimeout(() => {
+          try { inputEl.select(); } catch(e) {}
+        }, 30);
+      }
+    };
+
+    // [핵심 개선] 모바일에서 화면이 튀거나 넘어가지 않고, 6:2 입력 완료 시에만 다음 칸으로 안전하게 커서 대기
     window.handleNumericScoreChange = function(matchId, teamSide, rawVal, matchIndex) {
       const m = window.state.matches.find(item => item.id === matchId);
       if (!m) return;
-      let num = rawVal === '' ? 0 : parseInt(rawVal, 10);
-      
+
       const inputEl = document.getElementById(`score-${matchIndex}-${teamSide}`);
+      
+      // 숫자 이외의 문자 제거 및 단일 글자 보정
+      const cleanVal = rawVal.replace(/[^0-9]/g, '');
+      if (inputEl && inputEl.value !== cleanVal) {
+        inputEl.value = cleanVal;
+      }
+
+      let num = cleanVal === '' ? 0 : parseInt(cleanVal, 10);
+      
       if (num > 7) {
-        showToast('7 이하의 점수만 입력할 수 있습니다.');
+        showToast('7 이하의 점수를 입력해주세요.');
         if (inputEl) inputEl.value = '';
         num = 0;
       }
-      
+
       if (teamSide === 1) {
         m.s1 = isNaN(num) ? 0 : num;
-        if (rawVal !== '' && num <= 7) {
-          const nextInput = document.getElementById(`score-${matchIndex}-2`);
-          if (nextInput && nextInput.value === '') nextInput.focus();
+        updateSingleMatchCardState(matchIndex, m);
+
+        // 첫 번째 점수(예: 6) 입력 시 화면을 고정 상태로 두고 즉시 오른쪽 점수칸으로 포커스
+        if (cleanVal !== '' && num <= 7) {
+          const nextSideInput = document.getElementById(`score-${matchIndex}-2`);
+          if (nextSideInput) {
+            // preventScroll로 모바일 브라우저가 화면을 마구 위아래로 흔드는 현상 원천 차단
+            nextSideInput.focus({ preventScroll: true });
+            setTimeout(() => {
+              try { nextSideInput.select(); } catch(e) {}
+            }, 20);
+          }
         }
       } else {
         m.s2 = isNaN(num) ? 0 : num;
-        if (rawVal !== '' && num <= 7) {
-          const nextMatch = document.getElementById(`score-${matchIndex + 1}-1`);
-          if (nextMatch) nextMatch.focus();
+        updateSingleMatchCardState(matchIndex, m);
+
+        // 두 번째 점수(예: 2)까지 입력이 완료되면 다음 경기 첫 번째 칸으로 안전 이동
+        if (cleanVal !== '' && num <= 7) {
+          const nextMatchInput = document.getElementById(`score-${matchIndex + 1}-1`);
+          if (nextMatchInput) {
+            // 화면 흔들림 없이 다음 매치 입력칸으로 포커스 이동 후 커서 대기
+            nextMatchInput.focus({ preventScroll: true });
+            
+            // 키보드에 가려지지 않도록 필요한 경우에만 부드럽게 위치 정돈
+            const rect = nextMatchInput.getBoundingClientRect();
+            if (rect.bottom > window.innerHeight - 120) {
+              nextMatchInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+            setTimeout(() => {
+              try { nextMatchInput.select(); } catch(e) {}
+            }, 20);
+          } else {
+            // 마지막 경기 입력 완료 시 키패드 닫기
+            inputEl.blur();
+            showToast('모든 경기 점수가 입력되었습니다! 🏆');
+          }
         }
       }
+
       saveState(false);
       updateStats();
+    };
+
+    // DOM을 다시 생성하지 않고 해당 카드의 상태와 색상만 가볍게 변경 (화면 흔들림 제로)
+    function updateSingleMatchCardState(matchIndex, m) {
+      const card = document.getElementById(`match-card-${matchIndex}`);
+      const t1Box = document.getElementById(`team1-box-${matchIndex}`);
+      const t2Box = document.getElementById(`team2-box-${matchIndex}`);
+      if (!card || !t1Box || !t2Box) return;
+
+      const isPlayed = (m.s1 > 0 || m.s2 > 0);
+      const isT1Win = isPlayed && m.s1 > m.s2;
+      const isT2Win = isPlayed && m.s2 > m.s1;
+
+      if (isPlayed) card.classList.add('played');
+      else card.classList.remove('played');
+
+      t1Box.className = `team-box ${isT1Win ? 'win' : (isT2Win ? 'lose' : '')}`;
+      t2Box.className = `team-box ${isT2Win ? 'win' : (isT1Win ? 'lose' : '')}`;
+    }
+
+    function updateAllMatchCardStates() {
+      if (!window.state.matches) return;
+      window.state.matches.forEach((m, idx) => {
+        updateSingleMatchCardState(idx, m);
+      });
     }
 
     function updateStats() {
-      const tot = window.state.matches.length;
-      const done = window.state.matches.filter(m => m.s1 > 0 || m.s2 > 0).length;
+      const tot = window.state.matches ? window.state.matches.length : 0;
+      const done = window.state.matches ? window.state.matches.filter(m => m.s1 > 0 || m.s2 > 0).length : 0;
       const statEl = document.getElementById('matchStat');
       if (statEl) statEl.innerText = `${done}/${tot} 완료`;
     }
@@ -1996,7 +2120,7 @@
       const eventTitle = document.getElementById('eventTitle')?.value || window.state.eventTitle || '친선대회';
       
       let htmlArr = [];
-      htmlArr.push(`<div style="text-align:center; font-size:13px; margin-bottom:2px; color:#0f172a; font-weight:900;">🏆 오늘의 테니스모임</div>`);
+      htmlArr.push(`<div style="text-align:center; font-size:13px; margin-bottom:2px; color:#0f172a; font-weight:900;">🏆 보화 테니스 클럽</div>`);
       htmlArr.push(`<div style="text-align:center; font-size:10.5px; font-weight:bold; color:#475569; margin-bottom:4px; border-bottom:1.5px solid #cbd5e1; padding-bottom:3px;">- ${eventTitle} - 결과 종합</div>`);
 
       if (window.state.prizes) {
@@ -2017,7 +2141,7 @@
           htmlArr.push(`<tr style="border-bottom:1px solid #e2e8f0; color:#1e293b; font-weight:bold;">
               <td style="padding:1.5px;">${i+1}</td>
               <td style="padding:1.5px;">${r.idx}-${r.name}</td>
-              <td style="padding:1.5px;">${r.win}승 ${r.loss}패</td>
+              <td style="padding:1.5px;">${r.win}승리 ${r.loss}양보</td>
               <td style="padding:1.5px;">${r.diff > 0 ? '+'+r.diff : r.diff}</td>
           </tr>`);
       });
@@ -2028,7 +2152,7 @@
       
       standings.forEach((r, i) => {
           htmlArr.push(`<div style="font-size:9.5px; border:1px solid #cbd5e1; border-radius:3px; padding:3px; background:#f8fafc;">`);
-          htmlArr.push(`<div style="font-weight:900; margin-bottom:1.5px; font-size:10.5px; color:#0f172a; border-bottom:1px solid #e2e8f0; padding-bottom:1.5px;">${i+1}. ${r.idx}-${r.name} <span style="font-weight:normal; color:#64748b; font-size:9px;">(${r.win}승${r.loss}패)</span></div>`);
+          htmlArr.push(`<div style="font-weight:900; margin-bottom:1.5px; font-size:10.5px; color:#0f172a; border-bottom:1px solid #e2e8f0; padding-bottom:1.5px;">${i+1}. ${r.idx}-${r.name} <span style="font-weight:normal; color:#64748b; font-size:9px;">(${r.win}승리, ${r.loss}양보)</span></div>`);
           
           const pIdx = r.originalIdx;
           let matchCount = 0;
@@ -2305,7 +2429,7 @@
 
     function getKakaoText(customMsg = '') {
       const title = document.getElementById('eventTitle')?.value || window.state.eventTitle || '친선대회';
-      let txt = `오늘의 테니스모임 - ${title}\n\n`;
+      let txt = `보화 테니스 클럽 - ${title}\n\n`;
       
       if (window.state.prizes) {
         txt += `[오늘 대회 상품]\n${window.state.prizes}\n\n`;
@@ -2514,7 +2638,16 @@
               }
               applyTheme(window.state.theme || 'summer');
               renderPlayerInputs(false);
-              renderMatches();
+              
+              // 사용자가 현재 점수를 타이핑 중이지 않을 때만 전체 재렌더링
+              const activeEl = document.activeElement;
+              if (!activeEl || !activeEl.classList.contains('score-input')) {
+                renderMatches();
+              } else {
+                updateAllMatchCardStates();
+                updateStats();
+              }
+
               renderResults();
               isRemoteUpdate = false;
             }
