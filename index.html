@@ -1551,7 +1551,8 @@
     import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
     import { getFirestore, doc, setDoc, deleteDoc, onSnapshot, collection, getDocs } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
-    const CLUB_ID = "today-tennis-moim";
+    // [중요: 타 클럽과 데이터가 절대 섞이거나 함께 지워지지 않는 '오늘의 테니스 모임' 전용 고유 키]
+    const CLUB_ID = "today-tennis-moim-v1";
     const LOCAL_STORAGE_KEY = "today_tennis_moim_state_v1";
     const LOCAL_ARCHIVE_KEY = "today_tennis_moim_archive_v1";
 
