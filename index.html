@@ -7,7 +7,7 @@
   <meta name="theme-color" content="#064e3b">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <title>세종 대왕테니스 클럽</title>
+  <title>오늘의 테니스 모임</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1133,7 +1133,7 @@
         <div class="gate-anim-ball"></div>
       </div>
 
-      <h2 class="modal-shimmer-title">세종 대왕테니스 클럽</h2>
+      <h2 class="modal-shimmer-title">오늘의 테니스 모임</h2>
       <p style="font-size: 12px; color: #64748b; margin-bottom: 22px;">접속하실 모드를 선택해 주세요.</p>
 
       <div style="display: flex; flex-direction: column; gap: 11px;">
@@ -1228,7 +1228,7 @@
             <circle class="anim-ball" cx="25" cy="15" r="4.5" fill="var(--accent)" />
           </svg>
         </button>
-        <span class="club-title-text">세종 대왕테니스 클럽</span>
+        <span class="club-title-text">오늘의 테니스 모임</span>
         <div class="header-btns-group">
           <button onclick="openRulesModal()" class="rules-trigger-btn" title="공식 규칙">📜 규칙</button>
           <button onclick="openManualModal()" class="manual-trigger-btn" title="이용 설명서">📖</button>
@@ -1296,7 +1296,7 @@
               <option value="16">16명 (4코트)</option>
             </select>
 
-            <!-- A/B 분할 모드용 독립 인원/게임수 셀렉트 2종 (4명 4G 제외, 8명 4G 2코트 포함) -->
+            <!-- A/B 분할 모드용 독립 인원/게임수 셀렉트 2종 -->
             <select id="groupACountSelect" onchange="changeGroupACount(this.value)" style="display: none; flex: 1; min-width: 0; width: 100%; background: #f0fdf4; border: 1.5px solid var(--primary); font-weight: 900; color:#14532d; font-size: 10.5px; border-radius: 8px; padding: 6px 1px; outline: none; text-align: center; letter-spacing: -0.6px;">
               <option value="4_3g">A:4명(3G)</option>
               <option value="5_4g" selected>A:5명(4G)</option>
@@ -1372,7 +1372,7 @@
                     <th style="width: 42px;">순위</th>
                     <th style="text-align: left; padding-left: 8px;">선수명</th>
                     <th style="width: 38px;">경기</th>
-                    <th style="width: 48px;">승-양보</th>
+                    <th style="width: 48px;">승-패</th>
                     <th style="width: 44px;">득실</th>
                     <th style="width: 44px;">승률</th>
                   </tr>
@@ -1414,7 +1414,7 @@
   <div id="manualModal" class="modal-backdrop">
     <div class="modal-box" style="max-width: 380px;">
       <div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #e2e8f0; padding-bottom: 8px; margin-bottom: 12px;">
-        <h3 style="font-size: 15px; font-weight: 900; color: #1e293b;">📖 세종 대왕테니스 클럽 - 이용 가이드</h3>
+        <h3 style="font-size: 15px; font-weight: 900; color: #1e293b;">📖 오늘의 테니스 모임 - 이용 가이드</h3>
         <button onclick="closeManualModal()" style="border: none; background: none; font-size: 18px; color: #94a3b8; cursor: pointer;">✕</button>
       </div>
 
@@ -1446,7 +1446,7 @@
           </ul>
         </div>
 
-        <div style="background: #fffbeb; padding: 10px 12px; border-radius: 8px; border-left: 4px solid var(--primary);">
+        <div style="background: #fffbeb; padding: 10px 12px; border-radius: 8px; border-left: 4px solid #f59e0b;">
           <div style="font-weight: 900; color: #b45309; font-size: 14px; margin-bottom: 6px;">💡 개인 모드 (일반회원 모드) 상세 안내</div>
           <ul style="padding-left: 16px; display: flex; flex-direction: column; gap: 5px; font-size: 11.5px; color: #78350f;">
             <li><b>다른 회원들에게 전송되지 않음:</b> 개인 모드에서 선수 명단을 바꾸거나 점수를 입력하고 대진표를 다시 짜더라도, 클라우드 데이터베이스(Firebase)로는 전송 저장되지 않습니다.</li>
@@ -1465,7 +1465,7 @@
   <div id="rulesModal" class="modal-backdrop">
     <div class="modal-box" style="max-width: 380px;">
       <div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #e2e8f0; padding-bottom: 8px; margin-bottom: 12px;">
-        <h3 style="font-size: 15px; font-weight: 900; color: #1e293b;">📜 세종 대왕테니스 클럽 5대 공식 규칙</h3>
+        <h3 style="font-size: 15px; font-weight: 900; color: #1e293b;">📜 오늘의 테니스 모임 5대 공식 규칙</h3>
         <button onclick="closeRulesModal()" style="border: none; background: none; font-size: 18px; color: #94a3b8; cursor: pointer;">✕</button>
       </div>
 
@@ -1752,10 +1752,10 @@
     import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
     import { getFirestore, doc, setDoc, deleteDoc, onSnapshot, collection, getDocs } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
-    // [세종 대왕테니스 클럽 고유 독립 식별자]
-    const CLUB_ID = "sejong-daewang-tennis-v1";
-    const LOCAL_STORAGE_KEY = "sejong_daewang_tennis_state_v1";
-    const LOCAL_ARCHIVE_KEY = "sejong_daewang_tennis_archive_v1";
+    // [오늘의 테니스 모임 고유 독립 식별자]
+    const CLUB_ID = "today-tennis-club-v1";
+    const LOCAL_STORAGE_KEY = "today_tennis_club_state_v1";
+    const LOCAL_ARCHIVE_KEY = "today_tennis_club_archive_v1";
 
     const firebaseConfig = {
       apiKey: "AIzaSyC2EQ52cnJjfwLnD55H3UeS7s9gFvxFuKk",
@@ -1781,7 +1781,7 @@
     window.currentUserRole = 'spectator';
 
     const _AUTH_CFG = {
-      _k: 0x05,    
+      _k: 0x07,    
       _w: 1600    
     };
 
@@ -1845,7 +1845,7 @@
       // 일반회원이 작업 중이던 가상 데이터를 클라우드 원본으로 리셋
       if (window.currentUserRole === 'spectator' && cloudOriginalState) {
         window.state = JSON.parse(JSON.stringify(cloudOriginalState));
-        sessionStorage.removeItem('sejong_guest_session');
+        sessionStorage.removeItem('guest_practice_session');
         renderPlayerInputs(true);
         renderMatches();
         renderResults();
@@ -2249,7 +2249,7 @@
         html += `
           <div style="text-align: center; margin: 10px 0 6px 0;">
             <span style="font-size: 11px; font-weight: 800; color: #64748b; letter-spacing: -0.2px;">
-              ────────── ${dateKey} ──────────
+              ────── ${dateKey} ──────
             </span>
           </div>
           <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-bottom: 6px;">
@@ -3047,7 +3047,7 @@
       const isAbMode = (window.state.kdkVersion === 'v2010_ab');
       
       let htmlArr = [];
-      htmlArr.push(`<div style="text-align:center; font-size:14px; margin-bottom:2px; color:#0f172a; font-weight:900;">🏆 세종 대왕테니스 클럽</div>`);
+      htmlArr.push(`<div style="text-align:center; font-size:14px; margin-bottom:2px; color:#0f172a; font-weight:900;">🏆 오늘의 테니스 모임</div>`);
       htmlArr.push(`<div style="text-align:center; font-size:11px; font-weight:bold; color:#475569; margin-bottom:6px; border-bottom:1.5px solid #cbd5e1; padding-bottom:4px;">- ${eventTitle} - 결과 종합</div>`);
 
       if (window.state.prizes) {
@@ -3326,7 +3326,7 @@
 
     function getKakaoText(customMsg = '') {
       const title = document.getElementById('eventTitle')?.value || window.state.eventTitle || '친선대회';
-      let txt = `세종 대왕테니스 클럽 - ${title}\n\n`;
+      let txt = `오늘의 테니스 모임 - ${title}\n\n`;
       
       if (window.state.prizes) {
         txt += `[오늘 대회 상품]\n${window.state.prizes}\n\n`;
@@ -3463,7 +3463,7 @@
         try {
           const titleInput = document.getElementById('eventTitle');
           if (titleInput) window.state.eventTitle = titleInput.value;
-          sessionStorage.setItem('sejong_guest_session', JSON.stringify(window.state));
+          sessionStorage.setItem('guest_practice_session', JSON.stringify(window.state));
         } catch(e) {}
         return;
       }
@@ -3504,7 +3504,7 @@
     // 일반회원이 창을 닫거나 새로고침하면 모든 가상 조작 데이터를 리셋
     window.addEventListener('beforeunload', () => {
       if (window.currentUserRole === 'spectator') {
-        sessionStorage.removeItem('sejong_guest_session');
+        sessionStorage.removeItem('guest_practice_session');
       }
     });
 
@@ -3564,7 +3564,7 @@
               cloudOriginalState = JSON.parse(JSON.stringify(cloudData));
 
               // 일반회원이 임의로 연습 조작 중인 경우 클라우드가 화면을 강제로 덮어쓰지 않도록 보호
-              if (window.currentUserRole === 'spectator' && sessionStorage.getItem('sejong_guest_session')) {
+              if (window.currentUserRole === 'spectator' && sessionStorage.getItem('guest_practice_session')) {
                 return;
               }
 
