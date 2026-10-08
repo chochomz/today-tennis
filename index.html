@@ -7,7 +7,7 @@
   <meta name="theme-color" content="#064e3b">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <title>오늘의 테니스 모임</title>
+  <title>세종 대왕테니스 클럽</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -924,7 +924,6 @@
       box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
     }
 
-    /* [보안 패드 모달 전용 모바일 최적화 스타일] */
     .secret-modal-box {
       width: 100%;
       max-width: 295px;
@@ -936,47 +935,26 @@
       box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.35);
     }
     .secret-pad-disk {
-      width: 120px;
-      height: 120px;
+      width: 110px;
+      height: 110px;
       margin: 10px auto 14px auto;
       border-radius: 50%;
-      background: radial-gradient(circle at 35% 35%, #f8fafc 0%, #e2e8f0 70%, #cbd5e1 100%);
-      border: 3px solid #94a3b8;
-      box-shadow: 0 6px 16px rgba(0,0,0,0.12), inset 0 2px 6px rgba(255,255,255,0.8);
+      background: radial-gradient(circle at 35% 35%, #fefce8 0%, #fef08a 60%, #fde047 100%);
+      border: 2.5px solid #ca8a04;
+      box-shadow: 0 6px 16px rgba(202, 138, 4, 0.2), inset 0 2px 6px rgba(255,255,255,0.9);
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 5px;
+      position: relative;
       cursor: pointer;
       user-select: none;
       -webkit-user-select: none;
       transition: transform 0.08s ease, box-shadow 0.08s ease;
+      overflow: hidden;
     }
     .secret-pad-disk:active {
       transform: scale(0.94);
-      box-shadow: 0 2px 8px rgba(0,0,0,0.2), inset 0 3px 8px rgba(0,0,0,0.15);
-    }
-    .secret-dots-row {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 7px;
-    }
-    .secret-dot {
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      border: 1.5px solid #94a3b8;
-      background: #ffffff;
-      box-shadow: inset 0 1px 3px rgba(0,0,0,0.15);
-      transition: all 0.15s ease;
-    }
-    .secret-dot.active {
-      background: #15803d;
-      border-color: #15803d;
-      box-shadow: 0 0 8px #22c55e;
-      transform: scale(1.15);
+      box-shadow: 0 2px 8px rgba(202, 138, 4, 0.25), inset 0 3px 8px rgba(0,0,0,0.1);
     }
     .secret-input-wrapper {
       display: flex;
@@ -1086,7 +1064,6 @@
 </head>
 <body>
 
-  <!-- [최초 접속 역할 선택 게이트웨이 모달] -->
   <div id="roleGateModal" class="modal-backdrop show" style="z-index: 200; background: rgba(6, 78, 59, 0.92); backdrop-filter: blur(4px);">
     <div class="modal-box" style="text-align: center; padding: 26px 20px; border: 2px solid #bef264;">
       
@@ -1156,7 +1133,7 @@
         <div class="gate-anim-ball"></div>
       </div>
 
-      <h2 class="modal-shimmer-title">오늘의 테니스 모임</h2>
+      <h2 class="modal-shimmer-title">세종 대왕테니스 클럽</h2>
       <p style="font-size: 12px; color: #64748b; margin-bottom: 22px;">접속하실 모드를 선택해 주세요.</p>
 
       <div style="display: flex; flex-direction: column; gap: 11px;">
@@ -1177,29 +1154,31 @@
     </div>
   </div>
 
-  <!-- [비밀 보안 위장 인증 모달: 코드명을 입력하세요 - 모바일 최적화 컴팩트 팝업] -->
   <div id="secretAuthModal" class="modal-backdrop" style="z-index: 210;">
     <div class="secret-modal-box">
       <h3 style="font-size: 15.5px; font-weight: 900; color: #1e293b; margin-bottom: 3px;">코드명을 입력하세요</h3>
       <p style="font-size: 11px; color: #64748b; margin-bottom: 10px;">보안 패드에 5자리 코드를 입력하세요.</p>
 
-      <!-- 둥근 판 + 5개 도트 위장 패드 -->
+      <!-- 은은한 노란색 테니스공 스케치 + 중앙 자물쇠 터치 패드 -->
       <div id="secretAuthPad" class="secret-pad-disk" onclick="handleSecretPadTap()" title="보안 터치 패드">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-          <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+        <!-- 테니스공 솔기(이음선) 스케치 라인 -->
+        <svg viewBox="0 0 100 100" style="position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none;">
+          <path d="M 18,18 Q 42,50 18,82" fill="none" stroke="rgba(255, 255, 255, 0.85)" stroke-width="4.5" stroke-linecap="round"/>
+          <path d="M 18,18 Q 42,50 18,82" fill="none" stroke="rgba(161, 98, 7, 0.35)" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M 82,18 Q 58,50 82,82" fill="none" stroke="rgba(255, 255, 255, 0.85)" stroke-width="4.5" stroke-linecap="round"/>
+          <path d="M 82,18 Q 58,50 82,82" fill="none" stroke="rgba(161, 98, 7, 0.35)" stroke-width="1.5" stroke-linecap="round"/>
         </svg>
-        <div class="secret-dots-row">
-          <div class="secret-dot" id="sdot-0"></div>
-          <div class="secret-dot" id="sdot-1"></div>
-          <div class="secret-dot" id="sdot-2"></div>
-          <div class="secret-dot" id="sdot-3"></div>
-          <div class="secret-dot" id="sdot-4"></div>
+
+        <!-- 가운데 자물쇠 아이콘 단독 배치 -->
+        <div style="position: relative; z-index: 2; display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 50%; background: rgba(255, 255, 255, 0.65); box-shadow: 0 2px 6px rgba(161, 98, 7, 0.2);">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#854d0e" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+          </svg>
         </div>
-        <span style="font-size: 8.5px; font-weight: 800; color: #64748b; letter-spacing: -0.3px;">SECURITY DISK</span>
       </div>
 
-      <!-- 위장 코드 입력창 (모바일 초과 방지 min-width:0 및 max-width 적용) -->
+      <!-- 위장 코드 입력창 -->
       <div class="secret-input-wrapper">
         <input 
           id="decoyCodeInput" 
@@ -1249,7 +1228,7 @@
             <circle class="anim-ball" cx="25" cy="15" r="4.5" fill="var(--accent)" />
           </svg>
         </button>
-        <span class="club-title-text">오늘의 테니스 모임</span>
+        <span class="club-title-text">세종 대왕테니스 클럽</span>
         <div class="header-btns-group">
           <button onclick="openRulesModal()" class="rules-trigger-btn" title="공식 규칙">📜 규칙</button>
           <button onclick="openManualModal()" class="manual-trigger-btn" title="이용 설명서">📖</button>
@@ -1435,7 +1414,7 @@
   <div id="manualModal" class="modal-backdrop">
     <div class="modal-box" style="max-width: 380px;">
       <div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #e2e8f0; padding-bottom: 8px; margin-bottom: 12px;">
-        <h3 style="font-size: 15px; font-weight: 900; color: #1e293b;">📖 오늘의 테니스 모임 - 이용 가이드</h3>
+        <h3 style="font-size: 15px; font-weight: 900; color: #1e293b;">📖 세종 대왕테니스 클럽 - 이용 가이드</h3>
         <button onclick="closeManualModal()" style="border: none; background: none; font-size: 18px; color: #94a3b8; cursor: pointer;">✕</button>
       </div>
 
@@ -1467,7 +1446,7 @@
           </ul>
         </div>
 
-        <div style="background: #fffbeb; padding: 10px 12px; border-radius: 8px; border-left: 4px solid #f59e0b;">
+        <div style="background: #fffbeb; padding: 10px 12px; border-radius: 8px; border-left: 4px solid var(--primary);">
           <div style="font-weight: 900; color: #b45309; font-size: 14px; margin-bottom: 6px;">💡 개인 모드 (일반회원 모드) 상세 안내</div>
           <ul style="padding-left: 16px; display: flex; flex-direction: column; gap: 5px; font-size: 11.5px; color: #78350f;">
             <li><b>다른 회원들에게 전송되지 않음:</b> 개인 모드에서 선수 명단을 바꾸거나 점수를 입력하고 대진표를 다시 짜더라도, 클라우드 데이터베이스(Firebase)로는 전송 저장되지 않습니다.</li>
@@ -1486,7 +1465,7 @@
   <div id="rulesModal" class="modal-backdrop">
     <div class="modal-box" style="max-width: 380px;">
       <div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #e2e8f0; padding-bottom: 8px; margin-bottom: 12px;">
-        <h3 style="font-size: 15px; font-weight: 900; color: #1e293b;">📜 오늘의 테니스 모임 5대 공식 규칙</h3>
+        <h3 style="font-size: 15px; font-weight: 900; color: #1e293b;">📜 세종 대왕테니스 클럽 5대 공식 규칙</h3>
         <button onclick="closeRulesModal()" style="border: none; background: none; font-size: 18px; color: #94a3b8; cursor: pointer;">✕</button>
       </div>
 
@@ -1773,10 +1752,10 @@
     import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
     import { getFirestore, doc, setDoc, deleteDoc, onSnapshot, collection, getDocs } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
-    // [오늘의 테니스 모임 고유 독립 식별자]
-    const CLUB_ID = "todays-tennis-club-v1";
-    const LOCAL_STORAGE_KEY = "todays_tennis_state_v1";
-    const LOCAL_ARCHIVE_KEY = "todays_tennis_archive_v1";
+    // [세종 대왕테니스 클럽 고유 독립 식별자]
+    const CLUB_ID = "sejong-daewang-tennis-v1";
+    const LOCAL_STORAGE_KEY = "sejong_daewang_tennis_state_v1";
+    const LOCAL_ARCHIVE_KEY = "sejong_daewang_tennis_archive_v1";
 
     const firebaseConfig = {
       apiKey: "AIzaSyC2EQ52cnJjfwLnD55H3UeS7s9gFvxFuKk",
@@ -1810,7 +1789,6 @@
 
     window.openSecretAuthModal = function() {
       _tapHistory = [];
-      updateSecretDots(0);
       const decoyInput = document.getElementById('decoyCodeInput');
       if (decoyInput) decoyInput.value = '';
       const modal = document.getElementById('secretAuthModal');
@@ -1819,7 +1797,6 @@
 
     window.closeSecretAuthModal = function() {
       _tapHistory = [];
-      updateSecretDots(0);
       const modal = document.getElementById('secretAuthModal');
       if (modal) modal.classList.remove('show');
     };
@@ -1830,25 +1807,13 @@
       _tapHistory.push(now);
 
       const count = _tapHistory.length;
-      updateSecretDots(Math.min(count, 5));
 
       if (count >= (_AUTH_CFG._k ^ 0)) {
         _tapHistory = [];
-        updateSecretDots(5);
         closeSecretAuthModal();
         selectUserRole('admin');
       }
     };
-
-    function updateSecretDots(activeCount) {
-      for (let i = 0; i < 5; i++) {
-        const dot = document.getElementById(`sdot-${i}`);
-        if (dot) {
-          if (i < activeCount) dot.classList.add('active');
-          else dot.classList.remove('active');
-        }
-      }
-    }
 
     window.handleDecoyCodeSubmit = function() {
       const input = document.getElementById('decoyCodeInput');
@@ -2296,7 +2261,7 @@
           html += `
             <div style="position: relative; border-radius: 8px; overflow: hidden; aspect-ratio: 1; border: 1px solid #cbd5e1; background: #0f172a;">
               <img src="${photoUrl}" onclick="showPhotoLightbox('${photoUrl}')" style="width: 100%; height: 100%; object-fit: cover; cursor: pointer;" />
-              <button onclick="deletePhoto('${photoId}')" style="position: absolute; top: 3px; right: 3px; background: rgba(225, 29, 72, 0.88); color: #fff; border: none; border-radius: 50%; width: 20px; height: 20px; font-size: 11px; cursor: flex; align-items: center; justify-content: center; font-weight: 900; box-shadow: 0 1px 3px rgba(0,0,0,0.4);">✕</button>
+              <button onclick="deletePhoto('${photoId}')" style="position: absolute; top: 3px; right: 3px; background: rgba(225, 29, 72, 0.88); color: #fff; border: none; border-radius: 50%; width: 20px; height: 20px; font-size: 11px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-weight: 900; box-shadow: 0 1px 3px rgba(0,0,0,0.4);">✕</button>
             </div>
           `;
         });
@@ -3082,7 +3047,7 @@
       const isAbMode = (window.state.kdkVersion === 'v2010_ab');
       
       let htmlArr = [];
-      htmlArr.push(`<div style="text-align:center; font-size:14px; margin-bottom:2px; color:#0f172a; font-weight:900;">🏆 오늘의 테니스 모임</div>`);
+      htmlArr.push(`<div style="text-align:center; font-size:14px; margin-bottom:2px; color:#0f172a; font-weight:900;">🏆 세종 대왕테니스 클럽</div>`);
       htmlArr.push(`<div style="text-align:center; font-size:11px; font-weight:bold; color:#475569; margin-bottom:6px; border-bottom:1.5px solid #cbd5e1; padding-bottom:4px;">- ${eventTitle} - 결과 종합</div>`);
 
       if (window.state.prizes) {
@@ -3361,7 +3326,7 @@
 
     function getKakaoText(customMsg = '') {
       const title = document.getElementById('eventTitle')?.value || window.state.eventTitle || '친선대회';
-      let txt = `오늘의 테니스 모임 - ${title}\n\n`;
+      let txt = `세종 대왕테니스 클럽 - ${title}\n\n`;
       
       if (window.state.prizes) {
         txt += `[오늘 대회 상품]\n${window.state.prizes}\n\n`;
